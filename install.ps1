@@ -10,7 +10,20 @@ if ([Environment]::Is64BitOperatingSystem -eq $false) {
     Write-Host "Your system is 32-bit and Claude Code only supports 64-bit Windows" -ForegroundColor Yellow
     exit 1
 }
-Write-Host "System: 64-bit Windows detected" -ForegroundColor Green
+
+# Check PowerShell process architecture
+if ([Environment]::Is64BitProcess -eq $false) {
+    Write-Host "[ERROR] You are running 32-bit PowerShell" -ForegroundColor Red
+    Write-Host "Claude Code requires 64-bit PowerShell" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "Please run this installer with 64-bit PowerShell:" -ForegroundColor Cyan
+    Write-Host "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File `"$PSCommandPath`"" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Or open 64-bit PowerShell directly (NOT 'Windows PowerShell (x86)')" -ForegroundColor Yellow
+    exit 1
+}
+
+Write-Host "System: 64-bit Windows with 64-bit PowerShell" -ForegroundColor Green
 Write-Host ""
 
 # Create .local/bin directory
