@@ -27,11 +27,8 @@ $currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
 if ($currentPath -notlike "*$binDir*") {
     Write-Host ""
     Write-Host "Adding $binDir to PATH..."
-    [Environment]::SetEnvironmentVariable(
-        "Path",
-        "$currentPath;$binDir",
-        "User"
-    )
+    $newPath = "$currentPath;$binDir"
+    [Environment]::SetEnvironmentVariable("Path", $newPath, "User")
     Write-Host "[OK] Added to PATH (restart your terminal to apply)" -ForegroundColor Green
 } else {
     Write-Host "[OK] Already in PATH" -ForegroundColor Green
@@ -67,7 +64,7 @@ Write-Host ""
 Write-Host "Installation complete!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Cyan
-Write-Host "1. Restart your terminal or run: `$env:Path += `";$binDir`""
+Write-Host "1. Restart your terminal"
 Write-Host "2. Configure AWS credentials (if not already done)"
 Write-Host "3. Edit $configPath for your Bedrock setup"
 Write-Host "4. Run: claude --version"
