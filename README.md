@@ -8,9 +8,11 @@ This package provides Claude Code for offline installation on systems with AWS B
 
 ## Prerequisites
 
-- Windows 10/11
+- **Windows 10/11 (64-bit REQUIRED)**
 - AWS Bedrock access configured
 - AWS credentials with appropriate permissions
+
+**IMPORTANT:** Claude Code requires 64-bit Windows. 32-bit systems are not supported.
 
 ## Installation
 

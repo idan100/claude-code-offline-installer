@@ -4,6 +4,15 @@ Write-Host "Claude Code Offline Installer" -ForegroundColor Cyan
 Write-Host "=============================" -ForegroundColor Cyan
 Write-Host ""
 
+# Check system architecture
+if ([Environment]::Is64BitOperatingSystem -eq $false) {
+    Write-Host "[ERROR] This installer requires 64-bit Windows" -ForegroundColor Red
+    Write-Host "Your system is 32-bit and Claude Code only supports 64-bit Windows" -ForegroundColor Yellow
+    exit 1
+}
+Write-Host "System: 64-bit Windows detected" -ForegroundColor Green
+Write-Host ""
+
 # Create .local/bin directory
 $binDir = "$env:USERPROFILE\.local\bin"
 Write-Host "Creating directory: $binDir"

@@ -1,5 +1,17 @@
 # Windows Installation Guide
 
+## System Requirements
+
+- **64-bit Windows 10/11** (32-bit NOT supported)
+- AWS Bedrock access
+- AWS credentials configured
+
+Check your system:
+```powershell
+[Environment]::Is64BitOperatingSystem
+# Should return: True
+```
+
 ## Quick Start
 
 ### 1. Download from GitHub
