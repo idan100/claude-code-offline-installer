@@ -16,9 +16,9 @@ $destPath = Join-Path $binDir "claude.exe"
 if (Test-Path $sourcePath) {
     Write-Host "Copying claude.exe to $binDir"
     Copy-Item -Path $sourcePath -Destination $destPath -Force
-    Write-Host "âœ“ Claude Code executable installed" -ForegroundColor Green
+    Write-Host "[OK] Claude Code executable installed" -ForegroundColor Green
 } else {
-    Write-Host "âœ— Error: claude.exe not found in installer directory" -ForegroundColor Red
+    Write-Host "[ERROR] claude.exe not found in installer directory" -ForegroundColor Red
     exit 1
 }
 
@@ -32,9 +32,9 @@ if ($currentPath -notlike "*$binDir*") {
         "$currentPath;$binDir",
         "User"
     )
-    Write-Host "âœ“ Added to PATH (restart your terminal to apply)" -ForegroundColor Green
+    Write-Host "[OK] Added to PATH (restart your terminal to apply)" -ForegroundColor Green
 } else {
-    Write-Host "âœ“ Already in PATH" -ForegroundColor Green
+    Write-Host "[OK] Already in PATH" -ForegroundColor Green
 }
 
 # Create .claude directory
@@ -57,10 +57,10 @@ if (-not (Test-Path $configPath)) {
     } | ConvertTo-Json -Depth 10
 
     Set-Content -Path $configPath -Value $sampleConfig -Encoding UTF8
-    Write-Host "âœ“ Created sample configuration at $configPath" -ForegroundColor Green
+    Write-Host "[OK] Created sample configuration at $configPath" -ForegroundColor Green
     Write-Host "  Edit this file to customize your Bedrock settings" -ForegroundColor Yellow
 } else {
-    Write-Host "âœ“ Configuration already exists at $configPath" -ForegroundColor Green
+    Write-Host "[OK] Configuration already exists at $configPath" -ForegroundColor Green
 }
 
 Write-Host ""
