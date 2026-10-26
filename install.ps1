@@ -1,5 +1,4 @@
-#!/usr/bin/env pwsh
-# Claude Code Offline Installer for Windows
+﻿# Claude Code Offline Installer for Windows
 
 Write-Host "Claude Code Offline Installer" -ForegroundColor Cyan
 Write-Host "=============================" -ForegroundColor Cyan
@@ -17,9 +16,9 @@ $destPath = Join-Path $binDir "claude.exe"
 if (Test-Path $sourcePath) {
     Write-Host "Copying claude.exe to $binDir"
     Copy-Item -Path $sourcePath -Destination $destPath -Force
-    Write-Host "✓ Claude Code executable installed" -ForegroundColor Green
+    Write-Host "âœ“ Claude Code executable installed" -ForegroundColor Green
 } else {
-    Write-Host "✗ Error: claude.exe not found in installer directory" -ForegroundColor Red
+    Write-Host "âœ— Error: claude.exe not found in installer directory" -ForegroundColor Red
     exit 1
 }
 
@@ -33,9 +32,9 @@ if ($currentPath -notlike "*$binDir*") {
         "$currentPath;$binDir",
         "User"
     )
-    Write-Host "✓ Added to PATH (restart your terminal to apply)" -ForegroundColor Green
+    Write-Host "âœ“ Added to PATH (restart your terminal to apply)" -ForegroundColor Green
 } else {
-    Write-Host "✓ Already in PATH" -ForegroundColor Green
+    Write-Host "âœ“ Already in PATH" -ForegroundColor Green
 }
 
 # Create .claude directory
@@ -57,11 +56,11 @@ if (-not (Test-Path $configPath)) {
         model = "anthropic.claude-sonnet-4-5-20250929-v1:0"
     } | ConvertTo-Json -Depth 10
 
-    Set-Content -Path $configPath -Value $sampleConfig
-    Write-Host "✓ Created sample configuration at $configPath" -ForegroundColor Green
+    Set-Content -Path $configPath -Value $sampleConfig -Encoding UTF8
+    Write-Host "âœ“ Created sample configuration at $configPath" -ForegroundColor Green
     Write-Host "  Edit this file to customize your Bedrock settings" -ForegroundColor Yellow
 } else {
-    Write-Host "✓ Configuration already exists at $configPath" -ForegroundColor Green
+    Write-Host "âœ“ Configuration already exists at $configPath" -ForegroundColor Green
 }
 
 Write-Host ""
